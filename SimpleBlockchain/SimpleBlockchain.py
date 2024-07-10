@@ -43,6 +43,31 @@ class Blockchain:
         encoded_block = json.dumps(block, sort_keys=True).encode()
         return hashlib.sha256(encoded_block).hexdigest()
     
+    # is_valid_chain : 블록체인이 규칙에 맞게 생성되어 있는지 확인
+    # 1) previous_hash 값이 이전 블록의 hash값과 동일한가?
+    # 2) proof 값이 previous_proof 값과 연산 후 해시 값 계산 시 특정 조건('0000'으로 시작)을 만족하는가?
+    def is_valid_chain(self, chain):
+        previous_block = chain[0]
+        block_index = 1
+
+        while block_index < len(chain):
+            block = chain[block_index]
+            if block['previous_hash'] != self.hash(previous_block):
+                return False
+            
+            previous_proof = previous_block['proof']
+            proof = block['proof']
+            hash_operation = hashlib.sha256(str(proof**2 - previous_proof**2).encode()).hexdigest()
+
+            if not hash_operation.startswith('0000'):
+                return False
+            
+            previous_block = block
+            block_index += 1
+
+        return True
+
+    
 # 블록체인 채굴하기
 def main():
     blockchain = Blockchain()
@@ -51,7 +76,10 @@ def main():
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
     block = blockchain.create_block(proof, previous_hash)
-    print(blockchain.chain)
+    
+    # 블록체인 출력
+    for block in blockchain.chain:
+        print(json.dumps(block, indent=4))
 
 if __name__ == "__main__":
     main()
