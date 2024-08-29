@@ -1,3 +1,6 @@
+# 제외 폴더
+pyBlockchain/blockchain-python
+
 # nodejs
 node_modules
 npm-debug.log
