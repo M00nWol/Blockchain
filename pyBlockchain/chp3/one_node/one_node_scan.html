@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyBTC Block Scan</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        td.transactions {
+            font-size: 10px; /* 원하는 크기로 조정 */
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>pyBTC Block Scan</h1>
+
+    <div>
+        <table>
+            <tr>
+                <th>timestamp</th>
+                <th>previous_hash</th>
+                <th>nonce</th>
+                <th>transactions</th>
+            </tr>
+
+            {% for i in range(0, block_len) %}
+            <tr>
+                <td>{{ df_scan.loc[i, 'timestamp'] }}</td>
+                <td>{{ df_scan.loc[i, 'previous_hash'] }}</td>
+                <td>{{ df_scan.loc[i, 'nonce'] }}</td>
+                <td class="transactions">{{ df_scan.loc[i, 'transactions'] }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+</html>
