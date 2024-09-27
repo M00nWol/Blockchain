@@ -1,0 +1,7 @@
+{
+    "Block number": 1,
+    "Previous Hash": "d601cad8e5d9bc992e4a08f29eb0d4921d6bdceb316afbe972a2d466ff9949ae",
+    "Hash": "Genesis",
+    "Nonce": 0,
+    "Transaction": "[4, 5, 6, 7]"
+}
