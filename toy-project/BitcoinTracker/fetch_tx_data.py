@@ -1,3 +1,4 @@
+# fetch_tx_data.py
 import requests
 
 def fetch_transaction_data(tx_id):
@@ -14,13 +15,9 @@ def fetch_transaction_data(tx_id):
     except Exception as err:
         print(f'Other error occurred: {err}')
 
-# 예시 트랜잭션 ID
-tx_id = '0d378f65ffe80e044712ffedae5a9563d9a74308ab13790cf43df05405b77a5b'
-tx_data = fetch_transaction_data(tx_id)
-
-# 결과 확인
-if tx_data:
-    print(tx_data)
-
-if __name__ == '__main__':
-    fetch_transaction_data(tx_id)
+if __name__ == "__main__":
+    # 테스트용 코드
+    tx_id = '0d378f65ffe80e044712ffedae5a9563d9a74308ab13790cf43df05405b77a5b'
+    tx_data = fetch_transaction_data(tx_id)
+    if tx_data:
+        print(tx_data)
